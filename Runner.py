@@ -1,3 +1,5 @@
+#TODO
+#Draw Graphs, and training dataset initialization
 from Perceptron import *;
 from graphics import *
 
