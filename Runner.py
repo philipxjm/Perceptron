@@ -3,7 +3,7 @@
 from Perceptron import *;
 from graphics import *
 
-p = Perceptron(inputLength = 2, learningConstant = 0.1);
+p = Perceptron(inputLength = 2, learningConstant = 1);
 training = [];
 
 def fLine(x):
@@ -38,12 +38,6 @@ def drawGraph():
         p.train(t.inputs, t.ans);
 
         guess = p.feedForward(t.inputs);
-        try:
-            PointT.undraw();
-        except Exception, e:
-            pass;
-        else:
-            pass;
         pointT = Point(t.inputs[0]*100 + 500,-t.inputs[1]*100 + 300);
 
         if guess > 0:
