@@ -3,7 +3,6 @@ import os, subprocess
 
 class Perceptron:
     def __init__(self, inputLength, learningConstant):
-        super(Perceptron, self).__init__();
         self.learningConstant = learningConstant;
         self.inputLength = inputLength;
         self.weights = {};

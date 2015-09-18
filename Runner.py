@@ -1,7 +1,9 @@
 #TODO
 #Draw Graphs, and training dataset initialization
 from Perceptron import *;
-from graphics import *
+from graphics import *;
+from numpy import *;
+import matplotlib.pyplot as plt
 
 p = Perceptron(inputLength = 2, learningConstant = 0.01);
 training = [];
@@ -28,4 +30,4 @@ def drawGraph():
 
 print(p.weights);
 drawGraph();
-k=input("press close to exit");
+k = raw_input("press close to exit");
