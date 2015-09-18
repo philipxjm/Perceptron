@@ -29,6 +29,7 @@ class Perceptron:
             print(self.weights);
 
 class Trainer:
-    def __init__(self, x, y, bias, answer):
-        self.inputs = [x, y, bias];
-        self.bias = bias;
+    def __init__(self, x, y, answer):
+        self.inputs = [x, y];
+        self.bias = 1;
+        self.ans = answer;
