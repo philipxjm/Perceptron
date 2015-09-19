@@ -7,7 +7,7 @@ class Perceptron:
     def __init__(self, inputLength, learningConstant):
         self.learningConstant = learningConstant;
         self.inputLength = inputLength;
-        #weights is a 2d vector.
+        #weights is a 3d vector.
         self.weights = {};
         n = 0;
         while n < inputLength:
@@ -41,6 +41,5 @@ class Perceptron:
 #trainer class, just inputs, bias, ans
 class Trainer:
     def __init__(self, x, y, answer):
-        self.inputs = [x, y];
-        self.bias = 1;
+        self.inputs = [x, y, 1];
         self.ans = answer;

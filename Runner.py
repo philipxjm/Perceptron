@@ -3,14 +3,14 @@
 from Perceptron import *;
 from graphics import *
 
-p = Perceptron(inputLength = 2, learningConstant = 1);
+p = Perceptron(inputLength = 3, learningConstant = 0.0005);
 training = [];
 
 def fLine(x):
-    return -0.5*x;
+    return -0.5*x + 1;
 
 def setup():
-    for i in range(0, 2000):
+    for i in range(0, 3000):
         x = rand.uniform(-5, 5);
         y = rand.uniform(-3, 3);
         ans = 1;
@@ -28,10 +28,15 @@ def drawGraph():
     xAxis.draw(win);
     yAxis.draw(win);
 
-    targetLine = Line(Point(0, 50), Point(1000, 550));
+    targetLine = Line(Point(100, 0), Point(1000, 450));
     targetLine.setWidth(2);
     targetLine.setFill('green');
     targetLine.draw(win);
+
+    currectWeightedLine = Line(Point(100, 0), Point(1000, 450));
+    currectWeightedLine.setWidth(2);
+    currectWeightedLine.setFill('red');
+    currectWeightedLine.draw(win);
 
     for i, t in enumerate(training):
         print("Trainer " + str(i + 1) + " :[x = " + str(t.inputs[0]) + ", y = " + str(t.inputs[1]) + ", ans = " + str(t.ans) + "]");
@@ -45,6 +50,12 @@ def drawGraph():
         else:
             pointT.setFill("blue");
         pointT.draw(win);
+        currectWeightedLine.undraw();
+        currectWeightedLine = Line(Point(0, (((-5)*(p.weights.get(0)/p.weights.get(1)))-((p.weights.get(2)/p.weights.get(1))))*100 + 100), Point(1000, (((5)*(p.weights.get(0)/p.weights.get(1)))-((p.weights.get(2)/p.weights.get(1))))*100 + 100));
+        currectWeightedLine.setWidth(2);
+        currectWeightedLine.setFill('red');
+        currectWeightedLine.draw(win);
+
         print("\n");
         time.sleep(0.00005);
 
@@ -62,12 +73,16 @@ def drawGraph():
     yAxis.setWidth(2);
     xAxis.draw(win);
     yAxis.draw(win);
-    targetLine = Line(Point(0, 50), Point(1000, 550));
+    targetLine = Line(Point(100, 0), Point(1000, 450));
     targetLine.setWidth(2);
     targetLine.setFill('green');
     targetLine.draw(win);
 
     correctness = 0.0;
+    currectWeightedLine = Line(Point(0, (((-5)*(p.weights.get(0)/p.weights.get(1)))-((p.weights.get(2)/p.weights.get(1))))*100 + 100), Point(1000, (((5)*(p.weights.get(0)/p.weights.get(1)))-((p.weights.get(2)/p.weights.get(1))))*100 + 100));
+    currectWeightedLine.setWidth(2);
+    currectWeightedLine.setFill('red');
+    currectWeightedLine.draw(win);
 
     for i, t in enumerate(training):
         print("Trainer " + str(i + 1) + " :[x = " + str(t.inputs[0]) + ", y = " + str(t.inputs[1]) + ", ans = " + str(t.ans) + "]");
@@ -83,9 +98,10 @@ def drawGraph():
         pointT.draw(win);
         if guess == t.ans:
             correctness += 1;
+        targetLine = Line(Point(100, 0), Point(1000, 450));
         time.sleep(0.00005);
 
-    print("Correctness of Training is: " + str((correctness/2000.0)*100.0) + "%");
+    print("Correctness of Training is: " + str((correctness/3000.0)*100.0) + "%");
     print("Final weights: " + str(p.weights));
 
 if __name__ == '__main__':
